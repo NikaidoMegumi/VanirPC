@@ -64,7 +64,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         DebugReturn(0, string.Format("OperationResult:" + operationResponse.OperationCode.ToString()));
         switch (operationResponse.OperationCode)
         {
-            case (byte)OperationCode.Login:
+            case (byte)OperationCode.AccountManager_Login:
                 {
                     if (operationResponse.ReturnCode == (short)ErrorCode.Ok)
                     {
@@ -115,7 +115,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
                     { (byte)LoginParameterCode.MemberID, memberID },
                     { (byte)LoginParameterCode.MemberPW, memberPW }
                 };
-                peer.OpCustom((byte)OperationCode.Login, parameter, true);
+                peer.OpCustom((byte)OperationCode.AccountManager_Login, parameter, true);
             }
             if (LoginStatus)
             {
