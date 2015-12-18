@@ -77,7 +77,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scene0\PhotonClient.cs" />
+    <Compile Include="Assets\Controller\Network\ModuleNetwork\AccountManager\AccountManager.cs" />
+    <Compile Include="Assets\Controller\Network\Network.cs" />
+    <Compile Include="Assets\Scenes\Scene_0_Login\GUILogin.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
