@@ -81,6 +81,8 @@
     <Compile Include="Assets\Controller\Network\Network.cs" />
     <Compile Include="Assets\Scenes\Scene_0_Login\GUILogin.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Controller\Network\NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
