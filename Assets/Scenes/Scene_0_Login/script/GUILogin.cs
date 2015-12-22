@@ -48,7 +48,9 @@ public class GUILogin: MonoBehaviour
 
     private void GUI_LoginSuccess()
     {
-        GUI.Label(new Rect(30, 190, 400, 20), "你的角色名称:" + network.accountManager.getNickname);
+        GUI.Label(new Rect(30, 190, 400, 20), "登陆成功");
+        //加载主场景
+        Application.LoadLevel("Scene1");
     }
 
     private void GUI_Disconnect()

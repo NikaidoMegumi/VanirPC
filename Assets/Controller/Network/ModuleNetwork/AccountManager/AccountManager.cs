@@ -1,7 +1,7 @@
-﻿using System;
-using ExitGames.Client.Photon;
+﻿using ExitGames.Client.Photon;
 using VanirProtocol;
 using System.Collections.Generic;
+using VanirProtocol.ModuleParameters.ModuleAccountManager;
 
 namespace Assets.Controller.Network.ModuleNetwork.AccountManager
 {
@@ -10,9 +10,6 @@ namespace Assets.Controller.Network.ModuleNetwork.AccountManager
         private PhotonPeer peer;
 
         public bool LoginStatus;
-
-        public string getNickname = "";
-        public string LoginResult = "";
 
         public string memberID = "";
         public string memberPW = "";
@@ -37,14 +34,13 @@ namespace Assets.Controller.Network.ModuleNetwork.AccountManager
             {
                 case (byte)OperationCode.AccountManager_Login:
                     {
-                        if (operationResponse.ReturnCode == (short)ErrorCode.Ok)
+                        LoginResult result = (LoginResult)operationResponse.Parameters[(byte)FormatResponseLogin.loginResult];
+                        if (result == LoginResult.Login_Success)
                         {
-                            getNickname = Convert.ToString(operationResponse.Parameters[(byte)LoginResponseCode.Nickname]);
                             LoginStatus = true;
                         }
                         else
                         {
-                            LoginResult = operationResponse.DebugMessage;
                             LoginStatus = false;
                         }
                         break;
@@ -55,10 +51,11 @@ namespace Assets.Controller.Network.ModuleNetwork.AccountManager
         internal void RunLogin()
         {
             var parameter = new Dictionary<byte, object>
-                {
-                    { (byte)LoginParameterCode.MemberID, memberID },
-                    { (byte)LoginParameterCode.MemberPW, memberPW }
-                };
+            {
+                { (byte)FormatRequestLogin.unityId, "noneId"},
+                { (byte)FormatRequestLogin.userAccount, memberID},
+                { (byte)FormatRequestLogin.userPassword, memberPW},
+            };
             peer.OpCustom((byte)OperationCode.AccountManager_Login, parameter, true);
         }
 
