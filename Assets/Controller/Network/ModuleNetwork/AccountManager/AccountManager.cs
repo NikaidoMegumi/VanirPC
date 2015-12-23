@@ -34,8 +34,7 @@ namespace Assets.Controller.Network.ModuleNetwork.AccountManager
             {
                 case (byte)OperationCode.AccountManager_Login:
                     {
-                        LoginResult result = (LoginResult)operationResponse.Parameters[(byte)FormatResponseLogin.loginResult];
-                        if (result == LoginResult.Login_Success)
+                        if (operationResponse.ReturnCode == (short)FormatReturnCodeLogin.RTC_Login_Success)
                         {
                             LoginStatus = true;
                         }
